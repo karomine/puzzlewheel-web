@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <script src="CW.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <link type="text/css" rel="stylesheet" href="CW.css">
+    <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16" />
+  
+
+  </head>
+  <body>
+
+    <div data-role="page" id="game-page">
+      <div class="container-fluid no-padding">
+
+      <canvas id="background-board"></canvas>
+      <canvas id="moving-piece-board"></canvas>
+
+      <div id="buttons-right">
+	<div class="button-container" id="button-holder-right">
+	  <div id="vertical-center">
+	  <div class="row margin-zero">
+	    <div class="col-xs-6 no-padding">
+	      <div class="unselected"><div class="button left-piece-search"><img class="img-responsive" src="PrevPieceNB.png"></div></div>
+	    </div>
+	    <div class="col-xs-6 no-padding padding-right">
+	      <div class="unselected"><div class="button right-piece-search"><img class="img-responsive" src="NextPieceNB.png"></div></div>
+	    </div>
+	  </div>
+	  <div class="row margin-zero">
+	    <div class="col-xs-6 no-padding">
+	      <div class="unselected"><div class="button rotate-left"><img class="img-responsive" src="RotateLeftNB.png"></div></div>
+	    </div>
+	    <div class="col-xs-6 no-padding">
+	      <div class="unselected"><div class="button rotate-right"><img class="img-responsive" src="RotateRightNB.png"></div></div>
+	    </div>
+	  </div>
+	  <div class="row margin-zero">    
+	    <div class="col-xs-6 no-padding">
+	      <div class="unselected"><div class="button flip-vertically"><img class="img-responsive" src="FlipUDNB.png"></div></div>
+	    </div>
+	    <div class="col-xs-6 no-padding">
+	      <div class="unselected"><div class="button flip-horizontally"><img class="img-responsive" src="FlipRLNB.png"></div></div>
+	    </div>
+	  </div>
+	  <div class="row margin-zero">
+	    <div class="col-xs-6 no-padding">
+	      <div class="unselected"><div class="button red"><img class="img-responsive" src="RedDropNB.png"></div></div>
+	    </div>
+	    <div class="col-xs-6 no-padding">
+	      <div class="unselected"><div class="button blue"><img class="img-responsive" src="BlueDropNB.png"></div></div>
+	    </div>
+	  </div>
+	  <div class="row margin-zero">
+	    <div class="col-xs-6 no-padding">
+	      <div class="unselected"><div class="button yellow"><img class="img-responsive" src="YellowDropNB.png"></div></div>
+	    </div>
+	    <div class="col-xs-6 no-padding">
+	      <div class="unselected"><div class="button clear"><img class="img-responsive" src="ClearDropNB.png"></div></div>
+	    </div>
+	  </div>
+	  <div class="row margin-zero">
+	    <div class="col-xs-6 no-padding">
+	      <div class="unselected"><div class="button peek"><img class="img-responsive" src="SeeItNB.png"></div></div>
+	    </div>
+	    <div class="col-xs-6 no-padding">
+	      <div class="unselected"><div class="button build-game"><img class="img-responsive" src="MultiPieceIconNB.png"></div></div>
+	    </div>
+	  </div>
+	  <div class="row margin-zero">
+	    <div class="col-xs-6 no-padding">
+	      <div class="unselected"><div class="button clear-board"><img class="img-responsive" src="ClearGridNB.png"></div></div>
+	    </div>
+	    <div class="col-xs-6 no-padding">
+	      <div class="unselected"><div class="button piece-id"></div></div>
+	    </div>
+	  </div>
+	  <div class="row margin-zero">
+	    <div class="col-xs-6 no-padding">
+	      <div class="unselected"><div class="button make-game"><img class="img-responsive" src="NewGameNB.png"></div></div>
+	    </div>
+	    <div class="col-xs-6 no-padding">
+	      <div class="unselected"><a href="#settings-page"><div class="button"><img class="img-responsive" src="Settings.png"></div></a></div>
+	    </div>
+	  </div>
+	  </div>
+	</div>
+      </div>
+      
+
+      <div id="buttons-below">
+
+	<div class="row button-container no-padding" id="button-holder-bottom">
+	  <div class="col-xs-6 no-padding">
+	    <div class="col-xs-3 no-padding">
+	      <div class="unselected"><div class="button left-piece-search"><img class="img-responsive" src="PrevPieceNB.png"></div></div>
+	    </div>
+	    <div class="col-xs-3 no-padding">
+	      <div class="unselected"><div class="button right-piece-search"><img class="img-responsive" src="NextPieceNB.png"></div></div>
+	    </div>
+	    <div class="col-xs-3 no-padding">
+	      <div class="unselected"><div class="button flip-vertically"><img class="img-responsive" src="FlipUDNB.png"></div></div>
+	    </div>
+	    <div class="col-xs-3 no-padding">
+	      <div class="unselected"><div class="button red"><img class="img-responsive" src="RedDropNB.png"></div></div>
+	    </div>
+	    <div class="col-xs-3 no-padding">
+	      <div class="unselected"><div class="button rotate-left"><img class="img-responsive" src="RotateLeftNB.png"></div></div>
+	    </div>
+	    <div class="col-xs-3 no-padding">
+	      <div class="unselected"><div class="button rotate-right"><img class="img-responsive" src="RotateRightNB.png"></div></div>
+	    </div>
+	    <div class="col-xs-3 no-padding">
+	      <div class="unselected"><div class="button flip-horizontally"><img class="img-responsive" src="FlipRLNB.png"></div></div>
+	    </div>
+	    <div class="col-xs-3 no-padding">
+	      <div class="unselected"><div class="button blue"><img class="img-responsive" src="BlueDropNB.png"></div></div>
+	    </div>
+	  </div>
+
+	  <div class="col-xs-6 no-padding">
+	    <div class="col-xs-3 no-padding">
+	      <div class="unselected"><div class="button yellow"><img class="img-responsive" src="YellowDropNB.png"></div></div>
+	    </div>
+	    <div class="col-xs-3 no-padding">
+	      <div class="unselected"><div class="button clear-board"><img class="img-responsive" src="ClearGridNB.png"></div></div>
+	    </div>
+	    <div class="col-xs-3 no-padding">
+	      <div class="unselected"><div class="button peek"><img class="img-responsive" src="SeeItNB.png"></div></div>
+	    </div>
+	    <div class="col-xs-3 no-padding">
+	      <div class="unselected"><div class="button build-game"><img class="img-responsive" src="MultiPieceIconNB.png"></div></div>
+	    </div>
+	    <div class="col-xs-3 no-padding">
+	      <div class="unselected"><div class="button clear"><img class="img-responsive" src="ClearDropNB.png"></div></div>
+	    </div>
+	    <div class="col-xs-3 no-padding">
+	      <div class="unselected"><div class="button piece-id"></div></div>
+	    </div>
+	    <div class="col-xs-3 no-padding">
+	      <div class="unselected"><div class="button make-game"><img class="img-responsive" src="NewGameNB.png"></div></div>
+	    </div>
+	    <div class="col-xs-3 no-padding">
+	      <div class="unselected"><a href="#settings-page"><div class="button"><img class="img-responsive" src="Settings.png"></div></a></div>
+	    </div>
+	  </div>  
+	</div>
+	
+      </div>
+    </div>
+    </div>
+
+    <div data-role="page" id="settings-page">
+
+      <div class="container-fluid">
+      
+      <div class="row">
+	<div class="col-xs-12">
+	  <label for="boardDimension">Board Dimension</label>
+	  <input type="range" min="2" max="6" id="boardDimension" class="slider">
+	</div>
+      </div>
+
+      <div class="row">
+	<div class="col-xs-12">
+	  <label for="gameDifficulty">Game Level</label>
+	  <input type="range" min="1" max="50" id="gameDifficulty" class="slider">
+	</div>
+      </div>
+
+      <div class="row">
+	<div class="col-xs-12">
+	  <a href="#game-page">Play Game</a>
+	</div>
+      </div>
+
+    </div>
+
+    </div>
+  
+  </body>
+  
+
+</html>
+
+
